@@ -1,1 +1,1 @@
-# KR-US-Class-Scheduler-
+# KR-US-Class-Scheduler
