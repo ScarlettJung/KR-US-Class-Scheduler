@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<htiml lang="ko">
+<html lang="ko">
   <head>
-    <meda charset="UTF-8"><!-- 이 문서는 UTF-8 문자 인코딩을 사용한다는 뜻  (한글, 영어, 특수문자가 깨지지 않게 해주는 설정) -->
+   <meta charset="UTF-8"><!-- 이 문서는 UTF-8 문자 인코딩을 사용한다는 뜻  (한글, 영어, 특수문자가 깨지지 않게 해주는 설정) -->
       <meta name ="viewport" content = "width=device-width, initial-scale=1.0">   <!-- 화면 크기에 맞게 웹페이지 크기를 자동으로 맞추는 설정     (휴대폰, 태블릿, 컴퓨터에서 화면이 깨지지 않게 해줌) -->
       <title> Scarlett's TimeSync Scheduler</title>
-      <link rel="stylesheet" href="style.css"> <!-- 이 HTML 문서에 style.css 라는 CSS 파일을 연결하는 코드   (CSS 파일에 있는 디자인/스타일을 이 페이지에 적용함) -->
+      <link rel="stylesheet" href="timesync_scheduler.css"> <!-- 이 HTML 문서에 style.css 라는 CSS 파일을 연결하는 코드   (CSS 파일에 있는 디자인/스타일을 이 페이지에 적용함) -->
   </head>
   <body>
     <header class="apple-header"><!-- header = 페이지 맨 위에 있는 상단 영역 (로고, 제목, 메뉴 같은 것) -->
@@ -13,15 +13,15 @@
         <p>ET Schedule Planner</p>
       </div> <!-- div = 그냥 "구역 하나 만든다" -->
       <button id="openModalBtn" class="primary-btn">Add New Class</button> <!-- primary-btn = 주요 버튼 스타일 이름 -->
-  </body>
 </header>
+ </body>
 
 <div class="main-layout"><!-- (1) 전체를 감싸는 큰 상자 --> 
   <aside class="sidebar"></aside> <!-- (2) 왼쪽 사이드바 (보조 정보) --> <!-- aside = 옆에 있는 영역 --> <!-- sidebar = 사이드 메뉴 구역 이름 --> 
    <!--<aside>: 웹 페이지의 주요 내용과는 조금 떨어진, 보조적인 내용을 담을 때 쓰는 시맨틱 태그입니다. 여기서는 '미니 달력'이 그 역할을 합니다.-->
-...
+
 </aside>
-...
+
   </div>
 </div>
 
@@ -31,7 +31,7 @@
     <div class="mini-calendar">
       <div class="mini-calendar-header">
         <button id="preMonth" class="nav-btn">&lt;</button><!-- &lt; = 화면에 < 화살표 표시 -->
-        <span id="miniCalendar Title"> April 2026</span>
+        <span id="miniCalendarTitle"> April 2026</span>
         <button id="nextMonth" class="nav-btn">&gt;</button> <!-- &gt; = 화면에 > 화살표 표시 -->
   </div>
   <div class="mini-calendar-weekdays">
@@ -52,7 +52,7 @@
 
 <div class="schedule-area">
     <!-- Week Navigation --> 
-    <div class="week-navigation"></div>
+    <div class="week-navigation">
     <button id="prevWeek" class="nav-btn">&lt;</button>
     <span id="weekTitle">April 6-12, 2026</span>
     <button id="nextWeek" class="nav-btn">&gt;</button>
@@ -63,13 +63,13 @@
 <div id="scheduleGrid" class="grid-container">
     <!-- Header row --> 
      <div class="grid-cell header">Time</div>
-     <div class="grid-cell header"><div style = "text-align:center",> <div class="header-day">Mon</div><div class="header-date">6</div></div></div>
-     <div class="grid-cell header"><div style = "text-align:center",> <div class="header-day">Tue</div><div class="header-date">7</div></div></div> 
-     <div class="grid-cell header"><div style = "text-align:center",> <div class="header-day">Wed</div><div class="header-date">8</div></div></div>
-     <div class="grid-cell header"><div style = "text-align:center",> <div class="header-day">Thu</div><div class="header-date">9</div></div></div> 
-     <div class="grid-cell header"><div style = "text-align:center",> <div class="header-day">Fri</div><div class="header-date">10</div></div></div>
-     <div class="grid-cell header"><div style = "text-align:center",> <div class="header-day">Sat</div><div class="header-date">11</div></div></div> 
-     <div class="grid-cell header"><div style = "text-align:center",> <div class="header-day">Sun</div><div class="header-date">12</div></div></div> 
+     <div class="grid-cell header"><div style = "text-align:center";> <div class="header-day">Mon</div><div class="header-date">6</div></div></div>
+     <div class="grid-cell header"><div style = "text-align:center";> <div class="header-day">Tue</div><div class="header-date">7</div></div></div> 
+     <div class="grid-cell header"><div style = "text-align:center";> <div class="header-day">Wed</div><div class="header-date">8</div></div></div>
+     <div class="grid-cell header"><div style = "text-align:center";> <div class="header-day">Thu</div><div class="header-date">9</div></div></div> 
+     <div class="grid-cell header"><div style = "text-align:center";> <div class="header-day">Fri</div><div class="header-date">10</div></div></div>
+     <div class="grid-cell header"><div style = "text-align:center";> <div class="header-day">Sat</div><div class="header-date">11</div></div></div> 
+     <div class="grid-cell header"><div style = "text-align:center";> <div class="header-day">Sun</div><div class="header-date">12</div></div></div> 
 </div>
 
 <!-- grid-cell header = 달력 맨 위 요일칸 --><!-- text-align:center = 글자 가운데 정렬 --> <!-- header-day = 요일 --><!-- header-date = 날짜 -->
@@ -310,7 +310,7 @@
     <div class="grid-cell task-cell color-bluesky">Woo</div> 
     <div class="grid-cell"></div>
     <div class="grid-cell"></div>
-    <div class="grid-cell task-cell color-bluesky">예은[Woo]</div> >
+    <div class="grid-cell task-cell color-bluesky">예은[Woo]</div>
     <div class="grid-cell"></div>
     <div class="grid-cell task-cell color-bluesky">빈센트</div> 
     <div class="grid-cell"></div>
