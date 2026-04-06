@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
         weekEnd.getDate() + ", " + weekEnd.getFullYear();
     }
     // 기존 시간표 그리드 삭제 
-    // scheduleGrid.innerHTML = ''; 
+    scheduleGrid.innerHTML = ''; 
 
     // 시간표 맨 위 헤더 줄(요일과 날짜) 생성
     const timeHeader = document.createElement('div');
@@ -191,38 +191,43 @@ document.addEventListener('DOMContentLoaded', function () {
           return c.date === cellDateStr && c.startHour === hour;
         });
         if (classForCell) {
-          //시작 분을 기반으로 top 위치 계싼 (0분 = 0%, 30분 = 50%)
+            //시작 분을 기반으로 top 위치 계싼 (0분 = 0%, 30분 = 50%)
+          const topOffset = (classForCell.startMinutes / 60) * 100;
+          //수업시간 (분 단위)를 계산해서 높이결정 
+          const startTotalMinutes = classForCell.startHour * 60 + classForCell.startMinutes;
+          const endTotalMinutes = classForCell.endHour * 60 + classForCell.endMinutes;
+          const durationMinutes = endTotalMinutes - startTotalMinutes;
+          //높이 셀 높이 (60분 =100% 기준으로 계산)
+          const heightPercent = (durationMinutes / 60) * 100;
+          //시간표시 문자열 생성
+          const startTimeStr = classForCell.startHour.toString().padStart(2, '0') + ':' +
+            classForCell.startMinutes.toString().padStart(2, '0');
+          const endTimeStr = classForCell.endHour.toString().padStart(2, '0') + ':' +
+            classForCell.endMinutes.toString().padStart(2, '0');
+            // 수업 블록 생성
+          const classBlock = document.createElement('div');
+          classBlock.className = 'task-cell ' + classForCell.colorClass;
+          // 수업 블록의 내용은 학생 이름과 시간 범위를 포함합니다.
+          classBlock.innerHTML = '<strong>' + classForCell.studentName + '</strong><br>' +
+                                 startTimeStr + ' - ' + endTimeStr;
+          classBlock.style.position = 'absolute';
+          //topOffset과 heightPrecent 이용해서 수업 블록 위치와 크기 설정
+          classBlock.style.top = topOffset + '%';
+          classBlock.style.height = heightPercent + '%';
+          classBlock.style.left = '2px';
+          classBlock.style.right = '2px';
+          classBlock.style.padding = '4px';
+          classBlock.style.borderRadius = '4px';
+          classBlock.style.fontSize = '11px';
+          classBlock.style.zIndex = '1';
+          classBlock.style.overflow = 'hidden';
+          classBlock.style.boxSizing = 'border-box';
+          cell.appendChild(classBlock);
         }
-        const topOffset = (classForCell.startMinutes / 60) * 100;
-        //수업시간 (분 단위)를 계산해서 높이결정 
-        const startTotalMinutes = classForCell.startHour * 60 + classForCell.startMinutes;
-        const endTotalMinutes = classForCell.endHour * 60 + classForCell.endMinutes;
-        const durationMinutes = endTotalMinutes - startTotalMinutes;
-        //높이 셀 높이 (60분 =100% 기준으로 계산)
-        const heighPercent = (durationMinutes / 60) * 100;
-        //시간표시 문자열 생성
-        const startTimeStr = classForCell.startHour.toString().padStart(2, '0') + ':' +
-          classForCell.startMinutes.toString().padStart(2, '0');
-        const endTimeStr = classForCell.endHour.toString().padStart(2, '0') + ':' +
-          classForCell.endMinutes.toString().padStart(2, '0');
-        classBlock.style.position = 'absolute';
-        //topOffset과 heightPrecent 이용해서 수업 블록 위치와 크기 설정
-        classBlock.style.top = topOffset + '%';
-        classBlock.style.height = heightPercent + '%';
-        classBlock.style.left = '2px';
-        classBlock.style.right = '2px';
-        classBlock.style.padding = '4px';
-        classBlock.style.borderRadius = '4px';
-        classBlock.style.fontSize = '11px';
-        classBlock.style.zIndex = '1';
-        classBlock.style.overflow = 'hidden';
-        classBlock.style.boxSizing = 'border-box';
-        cell.appendChild(classBlock);
+        scheduleGrid.appendChild(cell);
       }
-      scheduleGrid.appendChild(cell);
     }
   }
-}
     // --- 4. 이벤트 리스너 등록 (Event Listeners) --- 
   // 이전 주 버튼 클릭 시 
   prevWeekBtn.addEventListener('click', function () {
@@ -231,6 +236,24 @@ document.addEventListener('DOMContentLoaded', function () {
   renderMiniCalendar();
   renderWeekView();
 });
+// 다음 주 버튼 클릭 시
+  nextWeekBtn.addEventListener('click', function() {
+    selectedWeekStart.setDate(selectedWeekStart.getDate() + 7);
+    displayedMonth = new Date(selectedWeekStart.getFullYear(), selectedWeekStart.getMonth(), 1);
+    renderMiniCalendar();
+    renderWeekView();
+  });
+
+    // 이전 달 버튼 클릭 시
+  prevMonthBtn.addEventListener('click', function() {
+    displayedMonth.setMonth(displayedMonth.getMonth() - 1);
+    renderMiniCalendar();
+  });
+// 다음 달 버튼 클릭 시
+  nextMonthBtn.addEventListener('click', function() {
+    displayedMonth.setMonth(displayedMonth.getMonth() + 1);
+    renderMiniCalendar();
+  });
 
 // 다음 주 버튼 클릭 시 
 // 오늘 버튼 클릭 시 
@@ -248,9 +271,13 @@ openModalBtn.addEventListener('click', function () {
   modal.classList.add('active'); // active 클래스를 추가하여 CSS가 display: flex를 적용하게 함 
 });
 // 모달 닫기 버튼(X) 클릭 시 
-closeMOdalBtn.addEventListener('click', function ()) {
-  modal.classLIst.remove('active');
+closeModalBtn.addEventListener('click', function () {
+  modal.classList.remove('active');
 });
+// 취소 버튼 클릭 시
+cancelBtn.addEventListener('click', function() {
+    modal.classList.remove('active');
+  });
 // 모달 외부 배경 클릭 시 닫기 
 modal.addEventListener('click', function (e) {
   // 클릭된 실제 대상(e.target)이 모달 배경(modal) 그 자체일 때만 닫음 
