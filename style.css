@@ -1,0 +1,438 @@
+/* styles.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* Header Styles */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-area h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+.logo-area p {
+  color: #666;
+  font-size: 14px;
+}
+
+.primary-btn {
+  background-color: #4a90d9;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.primary-btn:hover {
+  background-color: #3a7bc8;
+}
+
+/* Main Layout */
+.main-layout {
+  display: flex;
+  padding: 20px 30px;
+  gap: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.mini-calendar {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mini-calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.mini-calendar-header span {
+  font-weight: 600;
+  font-size: 15px;
+  color: #333;
+}
+
+.nav-btn {
+  background-color: #f5f5f5;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #666;
+  transition: background-color 0.2s;
+}
+
+.nav-btn:hover {
+  background-color: #e5e5e5;
+}
+
+.mini-calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.mini-calendar-weekdays span {
+  font-size: 12px;
+  color: #999;
+  font-weight: 500;
+}
+
+.mini-calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.mini-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #333;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.mini-day:hover {
+  background-color: #e8f0fe;
+}
+
+.mini-day.other-month {
+  color: #ccc;
+}
+
+.mini-day.today {
+  background-color: #4a90d9;
+  color: white;
+  font-weight: 600;
+}
+
+.mini-day.selected {
+  background-color: #e8f0fe;
+  color: #4a90d9;
+  font-weight: 600;
+}
+
+.mini-day.in-week {
+  background-color: #f0f4ff;
+}
+
+/* Schedule Area */
+.schedule-area {
+  flex: 1;
+}
+
+.week-navigation {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  background-color: #ffffff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.week-navigation #weekTitle {
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+  min-width: 180px;
+}
+
+.today-btn {
+  background-color: #4a90d9;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.today-btn:hover {
+  background-color: #3a7bc8;
+}
+
+/* Header with date */
+.grid-cell.header .header-day {
+  font-size: 12px;
+  color: #666;
+}
+
+.grid-cell.header .header-date {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.grid-cell.header.today-col {
+  background-color: #e8f0fe;
+}
+
+/* Grid Layout */
+.grid-container {
+  display: grid;
+  grid-template-columns: 80px repeat(7, 1fr);
+  gap: 1px;
+  background-color: #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.grid-cell {
+  background-color: #ffffff;
+  padding: 0;
+  text-align: center;
+  min-height: 60px;
+  position: relative;
+  overflow: visible;
+}
+
+.grid-cell.header {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-cell.time-label {
+  background-color: #f8f9fa;
+  font-weight: 500;
+  color: #666;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-cell {
+  font-size: 12px;
+  border-radius: 4px;
+  padding: 4px 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Task Color Variants */
+.color-yellow {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.color-blue {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.color-green {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.color-red {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.color-purple {
+  background-color: #e2d9f3;
+  color: #4a235a;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  display: none; /* 초기 상태: 렌더링 트리에서 제외 */
+  position: fixed; /* 뷰포트 고정 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);  /* 반투명 오버레이 */
+  justify-content: center; /* 자식 중앙 정렬 */
+  align-items: center;
+  z-index: 1000; /* 최상위 레이어 보장 */
+}
+
+.modal-overlay.active {
+  display: flex;  /* active 클래스 추가 시 화면에 표시 */
+}
+
+.modal-content {
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  animation: modalSlideIn 0.3s ease; /* 애니메이션 엔진 호출 */
+}
+/* 모달이 나타날 때의 프레임별 애니메이션 정의 */
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;   /* 시작 시 투명도 0 (보이지 않음) */
+    transform: translateY(-20px);  /* 시작 시 위쪽으로 20px 이동된 위치 */
+  }
+  to {
+    opacity: 1;     /* 종료 시 투명도 1 (완전히 보임) */
+    transform: translateY(0);   /* 종료 시 원래의 정해진 위치로 복귀 */
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-header h3 {
+  font-size: 18px;
+  color: #333;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #4a90d9;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 20px;
+  border-top: 1px solid #eee;
+}
+
+.secondary-btn {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.secondary-btn:hover {
+  background-color: #e5e5e5;
+}
+
+/* 삭제 버튼 스타일 */
+.danger-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.danger-btn:hover {
+  background-color: #c82333;
+}
+
+/* 클릭 가능한 수업 카드 스타일 */
+.task-cell.clickable {
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.task-cell.clickable:hover {
+  transform: scale(1.02);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 상세 정보 스타일 */
+.detail-info p {
+  margin: 12px 0;
+  font-size: 15px;
+  color: #333;
+}
+
+.detail-info strong {
+  color: #666;
+}

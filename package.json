@@ -1,0 +1,26 @@
+{
+  "name": "kr-us-class-scheduler-",
+  "version": "1.0.0",
+  "description": "**KR-US-Class Scheduler** is a specialized full-stack web application designed to streamline international class management by bridging the time gap between **Washington D.C. (EST/EDT)** and **South Korea (KST)**.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ScarlettJung/KR-US-Class-Scheduler-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ScarlettJung/KR-US-Class-Scheduler-/issues"
+  },
+  "homepage": "https://github.com/ScarlettJung/KR-US-Class-Scheduler-#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}
